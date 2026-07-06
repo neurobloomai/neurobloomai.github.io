@@ -6,80 +6,88 @@
   <title>neurobloom.ai</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-           margin: 0; background: #0d1117; color: #e6edf3; }
-    .container { max-width: 720px; margin: 80px auto; padding: 0 24px; }
-    h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 6px; color: #e6edf3; }
-    .tagline { color: #7d8590; font-size: 0.9rem; margin-bottom: 48px; line-height: 1.6; }
-    h2 { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
-         text-transform: uppercase; color: #7d8590; margin: 0 0 14px 0; }
-    .section { margin-bottom: 40px; }
-    .links { display: flex; flex-direction: column; gap: 8px; }
-    .link-row { display: flex; align-items: baseline; gap: 12px; }
-    .link-row a { color: #58a6ff; text-decoration: none; font-size: 0.9rem; white-space: nowrap; }
-    .link-row a:hover { text-decoration: underline; }
-    .link-row span { color: #7d8590; font-size: 0.82rem; }
-    .divider { border: none; border-top: 1px solid #21262d; margin: 40px 0; }
-    .footer { color: #7d8590; font-size: 0.8rem; }
-    .footer a { color: #7d8590; }
+           margin: 0; background: #fff; color: #111; }
+    .container { max-width: 680px; margin: 120px auto; padding: 0 24px 80px; }
+    h1 { font-size: 1.6rem; font-weight: 600; margin-bottom: 8px; }
+    p  { color: #555; line-height: 1.6; margin-bottom: 24px; }
+    .links a { display: inline-block; margin-right: 20px; font-size: 0.95rem; color: #111; }
+    .divider { border: none; border-top: 1px solid #eee; margin: 48px 0; }
+    h2 { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+         text-transform: uppercase; color: #999; margin: 0 0 16px 0; }
+    .tools-section { margin-bottom: 32px; }
+    .tool-rows { display: flex; flex-direction: column; gap: 10px; }
+    .tool-row { display: flex; align-items: baseline; gap: 10px; }
+    .tool-row a { color: #111; text-decoration: none; font-size: 0.9rem;
+                  white-space: nowrap; border-bottom: 1px solid #ddd; }
+    .tool-row a:hover { border-bottom-color: #111; }
+    .tool-row span { color: #999; font-size: 0.82rem; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>neurobloom.ai</h1>
-    <p class="tagline">Open-source market framework — quality screeners, MA alignment, weekly notes.<br>
-    Built in public. Data via yfinance. Not financial advice.</p>
 
-    <div class="section">
+    <!-- Company identity -->
+    <h1>neurobloom.ai</h1>
+    <p>Building the trust layer for agent coordination.<br>
+       Part of the open-source ecosystem for human–AI collaboration.</p>
+    <div class="links">
+      <a href="/blog">Blog</a>
+      <a href="https://github.com/neurobloomai/pact-ax">PACT-AX</a>
+      <a href="mailto:founders@neurobloom.ai">Contact</a>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Open-source tools -->
+    <div class="tools-section">
       <h2>🇺🇸 US Markets</h2>
-      <div class="links">
-        <div class="link-row">
+      <div class="tool-rows">
+        <div class="tool-row">
           <a href="/market-tools/">Quality Screener</a>
           <span>Fundamentals filter — universe + watchlist</span>
         </div>
-        <div class="link-row">
+        <div class="tool-row">
           <a href="/market-tools/aligned_screener.html">Aligned Screener</a>
           <span>4/4 MA aligned names with entry signals</span>
         </div>
-        <div class="link-row">
+        <div class="tool-row">
           <a href="/market-tools/market_briefing.html">Market Briefing</a>
           <span>Weekly macro + sector pulse</span>
         </div>
-        <div class="link-row">
+        <div class="tool-row">
           <a href="/market-tools/weekly_notes.md">Weekly Notes</a>
           <span>MA alignment snapshot + watchlist status + liquid names panel</span>
         </div>
       </div>
     </div>
 
-    <div class="section">
+    <div class="tools-section">
       <h2>🇮🇳 India Markets</h2>
-      <div class="links">
-        <div class="link-row">
+      <div class="tool-rows">
+        <div class="tool-row">
           <a href="/market-tools/india_screener.html">Quality Screener</a>
           <span>Nifty 50 + midcap quality filter</span>
         </div>
-        <div class="link-row">
+        <div class="tool-row">
           <a href="/market-tools/india_aligned_screener.html">Aligned Screener</a>
           <span>4/4 MA aligned names</span>
         </div>
-        <div class="link-row">
+        <div class="tool-row">
           <a href="/market-tools/india_briefing.html">Market Briefing</a>
           <span>Weekly India macro + sector pulse</span>
         </div>
-        <div class="link-row">
+        <div class="tool-row">
           <a href="/market-tools/india_weekly_notes.md">Weekly Notes</a>
           <span>MA alignment snapshot + watchlist status</span>
         </div>
       </div>
     </div>
 
-    <hr class="divider">
+    <p style="font-size:0.78rem; color:#bbb; margin-top:40px; margin-bottom:0;">
+      Data via yfinance · Updated weekly · Not financial advice ·
+      <a href="https://github.com/neurobloomai/market-tools" style="color:#bbb;">GitHub</a>
+    </p>
 
-    <div class="footer">
-      <a href="https://github.com/neurobloomai/market-tools">GitHub</a> &nbsp;·&nbsp;
-      <a href="https://github.com/neurobloomai/pact-ax">PACT-AX</a> &nbsp;·&nbsp;
-      <a href="mailto:founders@neurobloom.ai">Contact</a>
-    </div>
   </div>
 </body>
 </html>
