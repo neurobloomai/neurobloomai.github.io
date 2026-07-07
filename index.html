@@ -14,6 +14,8 @@
     .divider { border: none; border-top: 1px solid #eee; margin: 48px 0; }
     h2 { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
          text-transform: uppercase; color: #999; margin: 0 0 16px 0; }
+    h2 a { color: #999; text-decoration: none; border-bottom: 1px solid #eee; }
+    h2 a:hover { color: #111; border-bottom-color: #111; }
     .tools-section { margin-bottom: 32px; }
     .tool-rows { display: flex; flex-direction: column; gap: 10px; }
     .tool-row { display: flex; align-items: baseline; gap: 10px; }
@@ -40,10 +42,10 @@
 
     <!-- Open-source tools -->
     <div class="tools-section">
-      <h2>🇺🇸 US Markets</h2>
+      <h2><a href="/market-tools/">US Markets</a></h2>
       <div class="tool-rows">
         <div class="tool-row">
-          <a href="/market-tools/">Quality Screener</a>
+          <a href="/market-tools/quality_screener.html">Quality Screener</a>
           <span>Fundamentals filter — universe + watchlist</span>
         </div>
         <div class="tool-row">
@@ -62,7 +64,7 @@
     </div>
 
     <div class="tools-section">
-      <h2>🇮🇳 India Markets</h2>
+      <h2>India Markets</h2>
       <div class="tool-rows">
         <div class="tool-row">
           <a href="/market-tools/india_screener.html">Quality Screener</a>
