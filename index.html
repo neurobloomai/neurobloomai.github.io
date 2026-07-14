@@ -26,21 +26,11 @@
     .subscribe-section { margin: 48px 0 0; }
     .subscribe-section h2 { margin-bottom: 6px; }
     .subscribe-section p { font-size: 0.88rem; color: #555; margin: 0 0 14px; }
-    .subscribe-form { display: flex; gap: 8px; }
-    .subscribe-form input {
-      flex: 1; padding: 9px 12px; border: 1px solid #ddd; border-radius: 6px;
-      font-size: 0.88rem; outline: none; color: #111;
+    .subscribe-section a.sub-link {
+      display: inline-block; padding: 9px 18px; background: #111; color: #fff;
+      border-radius: 6px; font-size: 0.88rem; text-decoration: none;
     }
-    .subscribe-form input:focus { border-color: #999; }
-    .subscribe-form button {
-      padding: 9px 18px; background: #111; color: #fff; border: none;
-      border-radius: 6px; font-size: 0.88rem; cursor: pointer; white-space: nowrap;
-    }
-    .subscribe-form button:hover { background: #333; }
-    .subscribe-form button:disabled { background: #999; cursor: default; }
-    .subscribe-msg { font-size: 0.82rem; margin-top: 8px; min-height: 18px; }
-    .subscribe-msg.ok  { color: #2d7a2d; }
-    .subscribe-msg.err { color: #c0392b; }
+    .subscribe-section a.sub-link:hover { background: #333; }
   </style>
 </head>
 <body>
@@ -114,11 +104,7 @@
     <div class="subscribe-section">
       <h2>Weekly Briefing</h2>
       <p>US + India market posture, setups worth watching, watchlist watch — every Monday.</p>
-      <div class="subscribe-form">
-        <input type="email" id="sub-email" placeholder="your@email.com" autocomplete="email">
-        <button id="sub-btn" onclick="subscribe()">Subscribe</button>
-      </div>
-      <div class="subscribe-msg" id="sub-msg"></div>
+      <a class="sub-link" href="mailto:newsletter@neurobloom.ai?subject=Subscribe&body=Please add me to the weekly briefing.">Get the briefing →</a>
     </div>
 
     <p style="font-size:0.78rem; color:#bbb; margin-top:40px; margin-bottom:0;">
@@ -170,10 +156,6 @@
         el.className = 'subscribe-msg ' + type;
       }
 
-      document.getElementById('sub-email').addEventListener('keydown', e => {
-        if (e.key === 'Enter') subscribe();
-      });
-    </script>
 
   </div>
 </body>
