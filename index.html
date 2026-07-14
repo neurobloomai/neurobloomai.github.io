@@ -23,6 +23,24 @@
                   white-space: nowrap; border-bottom: 1px solid #ddd; }
     .tool-row a:hover { border-bottom-color: #111; }
     .tool-row span { color: #999; font-size: 0.82rem; }
+    .subscribe-section { margin: 48px 0 0; }
+    .subscribe-section h2 { margin-bottom: 6px; }
+    .subscribe-section p { font-size: 0.88rem; color: #555; margin: 0 0 14px; }
+    .subscribe-form { display: flex; gap: 8px; }
+    .subscribe-form input {
+      flex: 1; padding: 9px 12px; border: 1px solid #ddd; border-radius: 6px;
+      font-size: 0.88rem; outline: none; color: #111;
+    }
+    .subscribe-form input:focus { border-color: #999; }
+    .subscribe-form button {
+      padding: 9px 18px; background: #111; color: #fff; border: none;
+      border-radius: 6px; font-size: 0.88rem; cursor: pointer; white-space: nowrap;
+    }
+    .subscribe-form button:hover { background: #333; }
+    .subscribe-form button:disabled { background: #999; cursor: default; }
+    .subscribe-msg { font-size: 0.82rem; margin-top: 8px; min-height: 18px; }
+    .subscribe-msg.ok  { color: #2d7a2d; }
+    .subscribe-msg.err { color: #c0392b; }
   </style>
 </head>
 <body>
@@ -93,10 +111,69 @@
       </div>
     </div>
 
+    <div class="subscribe-section">
+      <h2>Weekly Briefing</h2>
+      <p>US + India market posture, setups worth watching, watchlist watch — every Monday.</p>
+      <div class="subscribe-form">
+        <input type="email" id="sub-email" placeholder="your@email.com" autocomplete="email">
+        <button id="sub-btn" onclick="subscribe()">Subscribe</button>
+      </div>
+      <div class="subscribe-msg" id="sub-msg"></div>
+    </div>
+
     <p style="font-size:0.78rem; color:#bbb; margin-top:40px; margin-bottom:0;">
       Data via yfinance · Updated weekly · Not financial advice ·
       <a href="https://github.com/neurobloomai/" style="color:#bbb;">GitHub</a>
     </p>
+
+    <script>
+      // Update WORKER_URL after deploying the Cloudflare Worker
+      const WORKER_URL = 'https://neurobloom-subscribe.YOUR_ACCOUNT.workers.dev';
+
+      async function subscribe() {
+        const input = document.getElementById('sub-email');
+        const btn   = document.getElementById('sub-btn');
+        const msg   = document.getElementById('sub-msg');
+        const email = input.value.trim();
+
+        if (!email) { showMsg('Enter your email.', 'err'); return; }
+
+        btn.disabled = true;
+        btn.textContent = 'Subscribing…';
+        msg.className = 'subscribe-msg';
+        msg.textContent = '';
+
+        try {
+          const resp = await fetch(WORKER_URL, {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify({ email }),
+          });
+          const data = await resp.json();
+          if (data.ok) {
+            showMsg('You\'re in. See you Monday.', 'ok');
+            input.value = '';
+          } else {
+            showMsg(data.error || 'Something went wrong — try again.', 'err');
+          }
+        } catch {
+          showMsg('Could not connect — try again.', 'err');
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Subscribe';
+        }
+      }
+
+      function showMsg(text, type) {
+        const el = document.getElementById('sub-msg');
+        el.textContent = text;
+        el.className = 'subscribe-msg ' + type;
+      }
+
+      document.getElementById('sub-email').addEventListener('keydown', e => {
+        if (e.key === 'Enter') subscribe();
+      });
+    </script>
 
   </div>
 </body>
