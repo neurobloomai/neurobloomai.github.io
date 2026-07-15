@@ -23,24 +23,6 @@
                   white-space: nowrap; border-bottom: 1px solid #ddd; }
     .tool-row a:hover { border-bottom-color: #111; }
     .tool-row span { color: #999; font-size: 0.82rem; }
-    .subscribe-section { margin: 48px 0 0; }
-    .subscribe-section h2 { margin-bottom: 6px; }
-    .subscribe-section p { font-size: 0.88rem; color: #555; margin: 0 0 14px; }
-    .sub-form { display: flex; gap: 8px; }
-    .sub-form input {
-      flex: 1; padding: 9px 12px; border: 1px solid #ddd; border-radius: 6px;
-      font-size: 0.88rem; outline: none; color: #111;
-    }
-    .sub-form input:focus { border-color: #999; }
-    .sub-form button {
-      padding: 9px 18px; background: #111; color: #fff; border: none;
-      border-radius: 6px; font-size: 0.88rem; cursor: pointer; white-space: nowrap;
-    }
-    .sub-form button:hover { background: #333; }
-    .sub-form button:disabled { background: #999; cursor: default; }
-    .sub-msg { font-size: 0.82rem; margin-top: 8px; min-height: 18px; }
-    .sub-msg.ok  { color: #2d7a2d; }
-    .sub-msg.err { color: #c0392b; }
   </style>
 </head>
 <body>
@@ -111,55 +93,6 @@
       </div>
     </div>
 
-    <div class="subscribe-section">
-      <h2>Weekly Briefing</h2>
-      <p>US + India market posture, setups worth watching, watchlist watch — every Monday.</p>
-      <div class="sub-form">
-        <input type="email" id="sub-email" placeholder="your@email.com" autocomplete="email">
-        <button id="sub-btn" onclick="subscribe()">Get the briefing</button>
-      </div>
-      <div class="sub-msg" id="sub-msg"></div>
-    </div>
-
-    <script>
-      const WORKER = 'https://neurobloom-subscribe.neurobloomai.workers.dev';
-
-      async function subscribe() {
-        const input = document.getElementById('sub-email');
-        const btn   = document.getElementById('sub-btn');
-        const msg   = document.getElementById('sub-msg');
-        const email = input.value.trim();
-        if (!email) { setMsg('Enter your email.', 'err'); return; }
-        btn.disabled = true;
-        btn.textContent = '…';
-        msg.className = 'sub-msg';
-        msg.textContent = '';
-        try {
-          const r = await fetch(WORKER, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email }),
-          });
-          const d = await r.json();
-          if (d.ok) { setMsg("You're in. See you Monday.", 'ok'); input.value = ''; }
-          else       { setMsg(d.error || 'Something went wrong.', 'err'); }
-        } catch {
-          setMsg('Could not connect — try again.', 'err');
-        } finally {
-          btn.disabled = false;
-          btn.textContent = 'Get the briefing';
-        }
-      }
-
-      function setMsg(text, cls) {
-        const el = document.getElementById('sub-msg');
-        el.textContent = text;
-        el.className = 'sub-msg ' + cls;
-      }
-
-      document.getElementById('sub-email')
-        .addEventListener('keydown', e => { if (e.key === 'Enter') subscribe(); });
-    </script>
 
     <p style="font-size:0.78rem; color:#bbb; margin-top:40px; margin-bottom:0;">
       Data via yfinance · Updated weekly · Not financial advice ·
